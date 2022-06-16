@@ -43,7 +43,7 @@ class _MyOrderState extends State<MyOrder> {
         loadListOrder();
       }
     });
-    WidgetsBinding.instance!.addPostFrameCallback((timeStamp) {
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       context.read<OrderProvider>().resetPage();
       debugPrint("Load Data From Init");
       loadListOrder();

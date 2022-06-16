@@ -154,32 +154,14 @@ class _SplashScreenState extends State<SplashScreen> {
     final home = Provider.of<HomeProvider>(context, listen: false);
 
     return Container(
+
         decoration: BoxDecoration(
             image: DecorationImage(
-                fit: BoxFit.cover,
+                //fit: BoxFit.cover,
                 image: CachedNetworkImageProvider(home.splashscreen.image!))),
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
-        child: Column(
-          children: [
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    home.splashscreen.title!,
-                    style: TextStyle(fontSize: 22, color: Colors.grey),
-                  ),
-                  Text(
-                    home.splashscreen.description!,
-                    style: TextStyle(fontSize: 18, color: Colors.grey),
-                  ),
-                ],
-              ),
-            ),
-          ],
-        ));
+       );
   }
 
   videoSplashScreen() {

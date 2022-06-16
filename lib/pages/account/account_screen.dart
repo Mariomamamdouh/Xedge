@@ -54,19 +54,7 @@ class _AccountScreenState extends State<AccountScreen> {
 
   logout() async {
     final home = Provider.of<HomeProvider>(context, listen: false);
-    var auth = FirebaseAuth.instance;
-    final AccessToken? accessToken = await FacebookAuth.instance.accessToken;
-
     Session().removeUser();
-    if (auth.currentUser != null) {
-      await GoogleSignIn().signOut();
-    }
-    if (accessToken != null) {
-      await FacebookAuth.instance.logOut();
-    }
-    if (Session.data.getString('login_type') == 'apple') {
-      await auth.signOut();
-    }
     home.isReload = true;
     await Navigator.pushAndRemoveUntil(
         context,

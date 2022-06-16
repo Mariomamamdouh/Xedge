@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:nyoba/pages/category/brand_product_screen.dart';
 import 'package:nyoba/pages/category/category_screen.dart';
@@ -39,17 +40,17 @@ class BadgeCategory extends StatelessWidget {
                           context,
                           MaterialPageRoute(
                               builder: (context) => CategoryScreen(
-                                    isFromHome: false,
-                                  )));
+                                isFromHome: false,
+                              )));
                     } else {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
                               builder: (context) => BrandProducts(
-                                    categoryId: dataCategories[i].categories.toString(),
-                                    brandName:
-                                        dataCategories[i].titleCategories,
-                                  )));
+                                categoryId: dataCategories[i].categories.toString(),
+                                brandName:
+                                dataCategories[i].titleCategories,
+                              )));
                     }
                   },
                   child: Column(
@@ -96,7 +97,12 @@ class BadgeCategory extends StatelessWidget {
   Widget itemCategory(String? image, int i, {String type = 'url'}) {
     return Container(
       padding: EdgeInsets.all(5),
-      child: type == 'url' ? Image.network(image!) : Image.asset(image!),
+      child:  CachedNetworkImage(
+          imageUrl: image!,
+          progressIndicatorBuilder: (context, url, downloadProgress) =>
+              CircularProgressIndicator(value: downloadProgress.progress),
+          errorWidget: (context,url,error)=>Image(image: AssetImage("images/lobby/viewMore.png"),),
+          imageBuilder:(context,url)=> Image.network(image!)) ,
     );
   }
 }

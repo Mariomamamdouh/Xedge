@@ -31,7 +31,7 @@ class _WalletDetailState extends State<WalletDetail> {
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance!.addPostFrameCallback((timeStamp) {
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       context.read<WalletProvider>().reset();
       context.read<WalletProvider>().fetchBalance();
       context.read<WalletProvider>().fetchTransaction();

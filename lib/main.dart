@@ -286,7 +286,7 @@ class _MyAppState extends State<MyApp> {
           navigatorKey: GlobalVariable.navState,
           debugShowCheckedModeBanner: false,
           locale: value.appLocal,
-          title: 'RevoShop',
+          title: 'Ahly pay',
           routes: <String, WidgetBuilder>{
             'HomeScreen': (BuildContext context) => HomeScreen(),
           },
@@ -380,8 +380,19 @@ class _MyAppState extends State<MyApp> {
             GlobalCupertinoLocalizations.delegate,
             CountryLocalizations.delegate,
           ],
-          home: HomeScreen()
-,        ),
+          home:Builder(
+            builder: (context) {
+              return FutureBuilder(
+                  future: DeeplinkConfig().initUniLinks(context),
+                  builder: (_, snapshot) {
+                    if (snapshot.connectionState == ConnectionState.waiting) {
+                      return Container();
+                    }
+                    return snapshot.data as Widget;
+                  });
+            },
+          ),
+                   ),
       ),
     );
   }

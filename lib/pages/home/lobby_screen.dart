@@ -56,7 +56,7 @@ class _LobbyScreenState extends State<LobbyScreen>
   Animation? _colorTween, _titleColorTween, _iconColorTween, _moveTween;
 
   RefreshController _refreshController =
-      RefreshController(initialRefresh: false);
+  RefreshController(initialRefresh: false);
 
   int itemCount = 10;
   int itemCategoryCount = 9;
@@ -250,10 +250,10 @@ class _LobbyScreenState extends State<LobbyScreen>
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) => ProductMoreScreen(
-                                          name: AppLocalizations.of(context)!
-                                              .translate('recent_view')!,
-                                          include: value.productRecent,
-                                        )));
+                                      name: AppLocalizations.of(context)!
+                                          .translate('recent_view')!,
+                                      include: value.productRecent,
+                                    )));
                           },
                           child: Text(
                             AppLocalizations.of(context)!.translate('more')!,
@@ -397,14 +397,14 @@ class _LobbyScreenState extends State<LobbyScreen>
                                   ),
                                   Visibility(
                                       visible:
-                                          Session.data.getBool('isLogin') ==
-                                                  null ||
-                                              !Session.data.getBool('isLogin')!,
+                                      Session.data.getBool('isLogin') ==
+                                          null ||
+                                          !Session.data.getBool('isLogin')!,
                                       child: Column(
                                         mainAxisAlignment:
-                                            MainAxisAlignment.center,
+                                        MainAxisAlignment.center,
                                         crossAxisAlignment:
-                                            CrossAxisAlignment.start,
+                                        CrossAxisAlignment.start,
                                         children: [
                                           Flexible(
                                             child: Text(
@@ -422,7 +422,7 @@ class _LobbyScreenState extends State<LobbyScreen>
                                                   "${AppLocalizations.of(context)!.translate('please_login')} ",
                                                   style: TextStyle(
                                                       fontSize:
-                                                          responsiveFont(10),
+                                                      responsiveFont(10),
                                                       color: Colors.white),
                                                 ),
                                                 InkWell(
@@ -432,20 +432,20 @@ class _LobbyScreenState extends State<LobbyScreen>
                                                         MaterialPageRoute(
                                                             builder:
                                                                 (context) =>
-                                                                    Login(
-                                                                      isFromNavBar:
-                                                                          false,
-                                                                    )));
+                                                                Login(
+                                                                  isFromNavBar:
+                                                                  false,
+                                                                )));
                                                   },
                                                   child: Text(
                                                     AppLocalizations.of(
-                                                            context)!
+                                                        context)!
                                                         .translate('here')!,
                                                     style: TextStyle(
                                                         fontWeight:
-                                                            FontWeight.bold,
+                                                        FontWeight.bold,
                                                         fontSize:
-                                                            responsiveFont(10),
+                                                        responsiveFont(10),
                                                         color: Colors.white),
                                                   ),
                                                 )
@@ -456,47 +456,47 @@ class _LobbyScreenState extends State<LobbyScreen>
                                       )),
                                   Session.data.getString('firstname') != null
                                       ? Visibility(
-                                          visible:
-                                              Session.data.getBool('isLogin')!,
-                                          child: Column(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: [
-                                              Flexible(
-                                                child: Text(
-                                                  fullName.length > 10
-                                                      ? fullName.substring(
-                                                              0, 10) +
-                                                          '... '
-                                                      : fullName,
-                                                  style: TextStyle(
-                                                      fontSize:
-                                                          responsiveFont(14),
-                                                      fontWeight:
-                                                          FontWeight.bold,
-                                                      color: Colors.white),
-                                                ),
-                                              ),
-                                              Flexible(
-                                                child: Text(
-                                                  AppLocalizations.of(context)!
-                                                      .translate(
-                                                          'welcome_back')!,
-                                                  style: TextStyle(
-                                                      fontSize:
-                                                          responsiveFont(10),
-                                                      color: Colors.white),
-                                                ),
-                                              )
-                                            ],
-                                          ))
+                                      visible:
+                                      Session.data.getBool('isLogin')!,
+                                      child: Column(
+                                        mainAxisAlignment:
+                                        MainAxisAlignment.center,
+                                        crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                        children: [
+                                          Flexible(
+                                            child: Text(
+                                              fullName.length > 10
+                                                  ? fullName.substring(
+                                                  0, 10) +
+                                                  '... '
+                                                  : fullName,
+                                              style: TextStyle(
+                                                  fontSize:
+                                                  responsiveFont(14),
+                                                  fontWeight:
+                                                  FontWeight.bold,
+                                                  color: Colors.white),
+                                            ),
+                                          ),
+                                          Flexible(
+                                            child: Text(
+                                              AppLocalizations.of(context)!
+                                                  .translate(
+                                                  'welcome_back')!,
+                                              style: TextStyle(
+                                                  fontSize:
+                                                  responsiveFont(10),
+                                                  color: Colors.white),
+                                            ),
+                                          )
+                                        ],
+                                      ))
                                       : Container()
                                 ],
                               ),
                             ),
-                            Container(
+                            /*   Container(
                               height: 0,
                             ),
                             //Banner Item start Here
@@ -509,13 +509,12 @@ class _LobbyScreenState extends State<LobbyScreen>
                                 dataSlider: value.banners,
                                 loading: customLoading(),
                               );
-                            }),
+                            }),*/
                           ],
                         ),
                       ],
                     ),
-                    // wallet
-                    WalletCard(showBtnMore: true),
+
                     Container(
                       height: 15,
                     ),
@@ -525,27 +524,10 @@ class _LobbyScreenState extends State<LobbyScreen>
                         value.categories,
                       );
                     }),
-                    //flash sale countdown & card product item
-                    Consumer<HomeProvider>(builder: (context, value, child) {
-                      if (value.flashSales.isEmpty) {
-                        return Container();
-                      }
-                      return FlashSaleCountdown(
-                        dataFlashSaleCountDown: home.flashSales,
-                        dataFlashSaleProducts: home.flashSales[0].products,
-                        textAnimationController: _textAnimationController,
-                        colorAnimationController: _colorAnimationController,
-                        colorTween: _colorTween,
-                        iconColorTween: _iconColorTween,
-                        moveTween: _moveTween,
-                        titleColorTween: _titleColorTween,
-                        loading: home.loading,
-                      );
-                    }),
                     Container(
                       width: double.infinity,
                       margin: EdgeInsets.only(
-                          left: 15, bottom: 10, right: 15, top: 15),
+                          left: 15, bottom: 10, right: 15),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -562,14 +544,14 @@ class _LobbyScreenState extends State<LobbyScreen>
                                   context,
                                   MaterialPageRoute(
                                       builder: (context) => BrandProducts(
-                                            categoryId: clickIndex == 0
-                                                ? ''
-                                                : clickIndex.toString(),
-                                            brandName: selectedCategory ??
-                                                AppLocalizations.of(context)!
-                                                    .translate('new_product'),
-                                            sortIndex: 1,
-                                          )));
+                                        categoryId: clickIndex == 0
+                                            ? ''
+                                            : clickIndex.toString(),
+                                        brandName: selectedCategory ??
+                                            AppLocalizations.of(context)!
+                                                .translate('new_product'),
+                                        sortIndex: 1,
+                                      )));
                             },
                             child: Text(
                               AppLocalizations.of(context)!.translate('more')!,
@@ -584,50 +566,50 @@ class _LobbyScreenState extends State<LobbyScreen>
                     ),
                     Consumer<CategoryProvider>(
                         builder: (context, value, child) {
-                      if (value.loading) {
-                        return Container();
-                      } else {
-                        return Container(
-                          height: MediaQuery.of(context).size.height / 21,
-                          child: ListView.separated(
-                              itemCount: value.productCategories.length,
-                              scrollDirection: Axis.horizontal,
-                              itemBuilder: (context, i) {
-                                return GestureDetector(
-                                    onTap: () {
-                                      if (value.productCategories[i].id ==
-                                          clickIndex) {
-                                        setState(() {
-                                          clickIndex = 0;
-                                          selectedCategory =
-                                              AppLocalizations.of(context)!
-                                                  .translate('new_product');
-                                        });
-                                      } else {
-                                        setState(() {
-                                          clickIndex =
-                                              value.productCategories[i].id;
-                                          selectedCategory =
-                                              value.productCategories[i].name;
-                                        });
-                                      }
-                                      loadNewProduct(true);
-                                      setState(() {});
-                                    },
-                                    child: tabCategory(
-                                        value.productCategories[i],
-                                        i,
-                                        value.productCategories.length));
-                              },
-                              separatorBuilder:
-                                  (BuildContext context, int index) {
-                                return SizedBox(
-                                  width: 8,
-                                );
-                              }),
-                        );
-                      }
-                    }),
+                          if (value.loading) {
+                            return Container();
+                          } else {
+                            return Container(
+                              height: MediaQuery.of(context).size.height / 21,
+                              child: ListView.separated(
+                                  itemCount: value.productCategories.length,
+                                  scrollDirection: Axis.horizontal,
+                                  itemBuilder: (context, i) {
+                                    return GestureDetector(
+                                        onTap: () {
+                                          if (value.productCategories[i].id ==
+                                              clickIndex) {
+                                            setState(() {
+                                              clickIndex = 0;
+                                              selectedCategory =
+                                                  AppLocalizations.of(context)!
+                                                      .translate('new_product');
+                                            });
+                                          } else {
+                                            setState(() {
+                                              clickIndex =
+                                                  value.productCategories[i].id;
+                                              selectedCategory =
+                                                  value.productCategories[i].name;
+                                            });
+                                          }
+                                          loadNewProduct(true);
+                                          setState(() {});
+                                        },
+                                        child: tabCategory(
+                                            value.productCategories[i],
+                                            i,
+                                            value.productCategories.length));
+                                  },
+                                  separatorBuilder:
+                                      (BuildContext context, int index) {
+                                    return SizedBox(
+                                      width: 8,
+                                    );
+                                  }),
+                            );
+                          }
+                        }),
                     Container(
                       height: 10,
                     ),
@@ -635,7 +617,7 @@ class _LobbyScreenState extends State<LobbyScreen>
                     Container(
                       height: 15,
                     ),
-                    Container(
+                    /*  Container(
                       margin: EdgeInsets.symmetric(horizontal: 15),
                       child: Text(
                         AppLocalizations.of(context)!.translate('banner_1')!,
@@ -704,109 +686,7 @@ class _LobbyScreenState extends State<LobbyScreen>
                       );
                     }),
                     //special for you item
-                    Consumer<HomeProvider>(builder: (context, value, child) {
-                      return Column(
-                        children: [
-                          Container(
-                              width: double.infinity,
-                              margin: EdgeInsets.only(
-                                  left: 15, bottom: 10, right: 15),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Text(
-                                        value.specialProducts[0].title! ==
-                                                'Special Promo : App Only'
-                                            ? AppLocalizations.of(context)!
-                                                .translate('title_hap_1')!
-                                            : value.specialProducts[0].title!,
-                                        style: TextStyle(
-                                            fontSize: responsiveFont(14),
-                                            fontWeight: FontWeight.w600),
-                                      ),
-                                      GestureDetector(
-                                        onTap: () {
-                                          Navigator.push(
-                                              context,
-                                              MaterialPageRoute(
-                                                  builder:
-                                                      (context) =>
-                                                          ProductMoreScreen(
-                                                            include: products
-                                                                .productSpecial
-                                                                .products,
-                                                            name: value
-                                                                        .specialProducts[
-                                                                            0]
-                                                                        .title! ==
-                                                                    'Special Promo : App Only'
-                                                                ? AppLocalizations.of(
-                                                                        context)!
-                                                                    .translate(
-                                                                        'title_hap_1')!
-                                                                : value
-                                                                    .specialProducts[
-                                                                        0]
-                                                                    .title!,
-                                                          )));
-                                        },
-                                        child: Text(
-                                          AppLocalizations.of(context)!
-                                              .translate('more')!,
-                                          style: TextStyle(
-                                              fontSize: responsiveFont(12),
-                                              fontWeight: FontWeight.w600,
-                                              color: secondaryColor),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                  Text(
-                                    value.specialProducts[0].description! ==
-                                            'For You'
-                                        ? AppLocalizations.of(context)!
-                                            .translate('description_hap_1')!
-                                        : value.specialProducts[0].description!,
-                                    style: TextStyle(
-                                      fontSize: responsiveFont(12),
-                                      color: Colors.black,
-                                    ),
-                                    textAlign: TextAlign.justify,
-                                  )
-                                ],
-                              )),
-                          AspectRatio(
-                            aspectRatio: 3 / 2,
-                            child: value.loading
-                                ? shimmerProductItemSmall()
-                                : ListView.separated(
-                                    itemCount: value
-                                        .specialProducts[0].products!.length,
-                                    scrollDirection: Axis.horizontal,
-                                    itemBuilder: (context, i) {
-                                      return CardItem(
-                                        product: value
-                                            .specialProducts[0].products![i],
-                                        i: i,
-                                        itemCount: value.specialProducts[0]
-                                            .products!.length,
-                                      );
-                                    },
-                                    separatorBuilder:
-                                        (BuildContext context, int index) {
-                                      return SizedBox(
-                                        width: 5,
-                                      );
-                                    },
-                                  ),
-                          ),
-                        ],
-                      );
-                    }),
+
                     Container(
                       height: 10,
                     ),
@@ -1070,7 +950,7 @@ class _LobbyScreenState extends State<LobbyScreen>
                       height: 7,
                       color: HexColor("EEEEEE"),
                     ),
-                    buildRecommendation,
+                    buildRecommendation,*/
                     if (home.loadingMore) customLoading()
                   ],
                 ),
@@ -1182,74 +1062,74 @@ class _LobbyScreenState extends State<LobbyScreen>
                             ),
                             animatedText.description != null
                                 ? DefaultTextStyle(
-                                    style: TextStyle(
-                                        fontSize: responsiveFont(12),
-                                        color: Colors.black45),
-                                    child: AnimatedTextKit(
-                                      isRepeatingAnimation: true,
-                                      repeatForever: true,
-                                      animatedTexts: [
-                                        TyperAnimatedText(
-                                            AppLocalizations.of(context)!
-                                                .translate('search')!,
-                                            speed: Duration(milliseconds: 80)),
-                                        if (animatedText.description['text_1']
-                                                .isNotEmpty &&
-                                            animatedText.description != null)
-                                          TyperAnimatedText(animatedText
-                                              .description['text_1']),
-                                        if (animatedText.description['text_2']
-                                                .isNotEmpty &&
-                                            animatedText.description != null)
-                                          TyperAnimatedText(animatedText
-                                              .description['text_2']),
-                                        if (animatedText.description['text_3']
-                                                .isNotEmpty &&
-                                            animatedText.description != null)
-                                          TyperAnimatedText(animatedText
-                                              .description['text_3']),
-                                        if (animatedText.description['text_4']
-                                                .isNotEmpty &&
-                                            animatedText.description != null)
-                                          TyperAnimatedText(animatedText
-                                              .description['text_4']),
-                                        if (animatedText.description['text_5']
-                                                .isNotEmpty &&
-                                            animatedText.description != null)
-                                          TyperAnimatedText(animatedText
-                                              .description['text_5']),
-                                      ],
-                                      onTap: () {
-                                        Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                                builder: (context) =>
-                                                    SearchScreen()));
-                                      },
-                                    ),
-                                  )
+                              style: TextStyle(
+                                  fontSize: responsiveFont(12),
+                                  color: Colors.black45),
+                              child: AnimatedTextKit(
+                                isRepeatingAnimation: true,
+                                repeatForever: true,
+                                animatedTexts: [
+                                  TyperAnimatedText(
+                                      AppLocalizations.of(context)!
+                                          .translate('search')!,
+                                      speed: Duration(milliseconds: 80)),
+                                  if (animatedText.description['text_1']
+                                      .isNotEmpty &&
+                                      animatedText.description != null)
+                                    TyperAnimatedText(animatedText
+                                        .description['text_1']),
+                                  if (animatedText.description['text_2']
+                                      .isNotEmpty &&
+                                      animatedText.description != null)
+                                    TyperAnimatedText(animatedText
+                                        .description['text_2']),
+                                  if (animatedText.description['text_3']
+                                      .isNotEmpty &&
+                                      animatedText.description != null)
+                                    TyperAnimatedText(animatedText
+                                        .description['text_3']),
+                                  if (animatedText.description['text_4']
+                                      .isNotEmpty &&
+                                      animatedText.description != null)
+                                    TyperAnimatedText(animatedText
+                                        .description['text_4']),
+                                  if (animatedText.description['text_5']
+                                      .isNotEmpty &&
+                                      animatedText.description != null)
+                                    TyperAnimatedText(animatedText
+                                        .description['text_5']),
+                                ],
+                                onTap: () {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              SearchScreen()));
+                                },
+                              ),
+                            )
                                 : DefaultTextStyle(
-                                    style: TextStyle(
-                                        fontSize: responsiveFont(12),
-                                        color: Colors.black45),
-                                    child: AnimatedTextKit(
-                                      isRepeatingAnimation: true,
-                                      repeatForever: true,
-                                      animatedTexts: [
-                                        TyperAnimatedText(
-                                            AppLocalizations.of(context)!
-                                                .translate('search')!,
-                                            speed: Duration(milliseconds: 80)),
-                                      ],
-                                      onTap: () {
-                                        Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                                builder: (context) =>
-                                                    SearchScreen()));
-                                      },
-                                    ),
-                                  ),
+                              style: TextStyle(
+                                  fontSize: responsiveFont(12),
+                                  color: Colors.black45),
+                              child: AnimatedTextKit(
+                                isRepeatingAnimation: true,
+                                repeatForever: true,
+                                animatedTexts: [
+                                  TyperAnimatedText(
+                                      AppLocalizations.of(context)!
+                                          .translate('search')!,
+                                      speed: Duration(milliseconds: 80)),
+                                ],
+                                onTap: () {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              SearchScreen()));
+                                },
+                              ),
+                            ),
                           ],
                         )),
                   )),

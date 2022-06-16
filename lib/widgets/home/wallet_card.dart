@@ -144,7 +144,7 @@ class WalletCard extends StatelessWidget {
                             width: 5,
                           ),
                           Text(
-                            stringToCurrency(double.parse(balance!), context),
+                           balance!.toString(),
                             style: TextStyle(
                                 color: Colors.black,
                                 fontSize: responsiveFont(10),
